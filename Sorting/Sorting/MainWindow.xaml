@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sorting"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="382.112" Width="307.327">
     <Grid>
-        
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="39,39,0,0" TextWrapping="Wrap" 
+                   Text="몇개의 숫자를 생성할까요(Max=10만)?" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNo" HorizontalAlignment="Left" Height="23" Margin="42,77,0,0" 
+                 HorizontalContentAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnCreate" Content="생성" HorizontalAlignment="Left" Margin="185,77,0,0" VerticalAlignment="Top" Width="75" Click="BtnCreate_Click"/>
+        <Button x:Name="btnQuad" Content="Quadratic" HorizontalAlignment="Left" Margin="42,123,0,0" VerticalAlignment="Top" Width="75" Click="BtnQuad_Click"/>
+        <Button x:Name="btnNlog" Content="NlogN" HorizontalAlignment="Left" Margin="138,123,0,0" VerticalAlignment="Top" Width="75"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="148" Margin="42,163,0,0" VerticalAlignment="Top" Width="218"/>
+
     </Grid>
 </Window>
