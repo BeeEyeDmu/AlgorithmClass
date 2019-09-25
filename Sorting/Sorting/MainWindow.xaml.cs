@@ -63,5 +63,17 @@ namespace Sorting
       for(int i =N-10; i<N; i++)
         Console.WriteLine(a[i]);
     }
+
+    // NlogN 클릭
+    private void BtnNlog_Click(object sender, RoutedEventArgs e)
+    {
+      QuickSort(a, 0, N - 1);
+    }
+
+    // 퀵정렬
+    private void QuickSort(int[] a, int left, int right)
+    {
+      
+    }
   }
 }
