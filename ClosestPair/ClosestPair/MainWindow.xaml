@@ -8,13 +8,13 @@
         Title="MainWindow" Height="720" Width="600">
     <StackPanel>
         <Grid Height="600">
-            <Canvas Background="Beige" Width="500" Height="500"/>
+            <Canvas Name="canvas1" Background="Beige" Width="500" Height="500"/>
         </Grid>
         <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center">
-            <Button Width="100" Content="생성"/>
+            <Button Width="100" Content="생성" Click="Button_Click"/>
             <TextBlock Width="50"/>
-            <Button Width="100" Content="찾기"/>
+            <Button Width="100" Content="찾기" Click="Button_Click_1"/>
         </StackPanel>
     </StackPanel>
 </Window>
