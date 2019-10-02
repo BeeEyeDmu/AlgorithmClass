@@ -97,8 +97,31 @@ namespace ClosestPair
       //foreach (var v in a)
       //  Console.WriteLine(v);
 
-      Array.Sort(points, new YComparer());
+      IComparer xComp = new XComparer();
+      Array.Sort(points, xComp);
+      //Array.Sort(points, new XComparer());
       PrintPoints();
+
+      ClosestPair CP = FindClosestPair(points, 0, 100 - 1);
+
+    }
+
+    private ClosestPair FindClosestPair(Point[] points, int left, int right)
+    {
+      if (right - left <= 3)
+        AlgorithmN2();
+      int mid = left + (right - left) / 2;  // 중앙점
+      ClosestPair CPL = FindClosestPair(points, left, mid);
+      ClosestPair CPR = FindClosestPair(points, mid+1, right);
+      double d = Math.Min(CPL.dist, CPR.dist);
+      ClosestPair CPC = FindMidRange(points, d);
+
+      return MinCP(CPL, CPR, CPC);
+    }
+
+    class ClosestPair
+    {
+      // 가장 가까운 거리, 두 점
     }
 
     private void PrintPoints()
