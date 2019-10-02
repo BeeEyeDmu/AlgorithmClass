@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,25 @@ namespace ClosestPair
   /// <summary>
   /// MainWindow.xaml에 대한 상호 작용 논리
   /// </summary>
+  /// 
+
+  // IComparer는 비교를 위한 인터페이스이다
+  public class XComparer : IComparer
+  {
+    public int Compare(object x, object y)
+    {
+      return (int)(((Point)x).X - ((Point)y).X);
+    }
+  }
+
+  public class YComparer : IComparer
+  {
+    public int Compare(object x, object y)
+    {
+      return (int)(((Point)x).Y - ((Point)y).Y);
+    }
+  }
+
   public partial class MainWindow : Window
   {
     const int P = 100;
@@ -61,23 +81,37 @@ namespace ClosestPair
     // 찾기버튼
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
-      double min = double.MaxValue;
+      // points[] 배열에 있는 점들을
+      // x좌표를 기준으로 정렬하여 출력하시오
 
-      for(int i=0; i<P; i++)
-        for(int j=i+1; j<P; j++)
-        {
-          double d = Dist(i, j);
-          // d가 min 보다 작으면
-          // d, i, j를 저장
-          
-        }
+      // Array.Sort() Test
+      //int[] a = new int[100];
+      //Random r = new Random();
+      //for (int i = 0; i < 100; i++)
+      //  a[i] = r.Next(1000);
+
+      //foreach(var v in a)
+      //  Console.WriteLine(v);
+      //Console.WriteLine("...After Sort");
+      //Array.Sort(a);
+      //foreach (var v in a)
+      //  Console.WriteLine(v);
+
+      Array.Sort(points, new YComparer());
+      PrintPoints();
+    }
+
+    private void PrintPoints()
+    {
+      foreach(var p in points)
+        Console.WriteLine(p.X + ", " + p.Y);
     }
 
     // points[i]와 points[j]의 거리
-    private double Dist(int i, int j)
-    {
-      // Math.Pow(x, 2) 사용, 또는 x*x
-      // Math.Sqrt() 사용
-    }
+    //private double Dist(int i, int j)
+    //{
+    //  // Math.Pow(x, 2) 사용, 또는 x*x
+    //  // Math.Sqrt() 사용
+    //}
   }
 }
