@@ -15,6 +15,8 @@
             <Button Width="100" Content="생성" Click="Button_Click"/>
             <TextBlock Width="50"/>
             <Button Width="100" Content="찾기" Click="Button_Click_1"/>
+            <TextBlock Width="50"/>
+            <Button Width="100" Content="분할정복" Click="Button_Click_2"/>
         </StackPanel>
     </StackPanel>
 </Window>

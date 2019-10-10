@@ -102,26 +102,48 @@ namespace ClosestPair
       //Array.Sort(points, new XComparer());
       PrintPoints();
 
-      ClosestPair CP = FindClosestPair(points, 0, 100 - 1);
-
+      //ClosestPair CP = FindClosestPair(points, 0, 100 - 1);
+      FindClosestPair(points, 0, P);
     }
 
-    private ClosestPair FindClosestPair(Point[] points, int left, int right)
+    // Brute Force 방법
+    private PointPair FindClosestPair(Point[] points, int left, int right)
     {
-      if (right - left <= 3)
-        AlgorithmN2();
-      int mid = left + (right - left) / 2;  // 중앙점
-      ClosestPair CPL = FindClosestPair(points, left, mid);
-      ClosestPair CPR = FindClosestPair(points, mid+1, right);
-      double d = Math.Min(CPL.dist, CPR.dist);
-      ClosestPair CPC = FindMidRange(points, d);
+      double min = double.MaxValue;
+      int minI = 0, minJ = 0;
 
-      return MinCP(CPL, CPR, CPC);
-    }
+      // 10개의 배열 각각 요소를 비교 a[10] 
+      // a[i]-a[j]의 관계
+      // N = 10이라고 하면
+      //int N=10;
+      //for (int i = 0; i < N - 1; i++)
+      //  for (int j = i + 1; j < N; j++)
+      //    ;
 
-    class ClosestPair
-    {
-      // 가장 가까운 거리, 두 점
+      for (int i = 0; i < P - 1; i++)
+        for (int j = i + 1; j < P; j++)
+        {
+          if(Dist(i,j) < min)
+          {
+            min = Dist(i, j);
+            minI = i;
+            minJ = j;
+          }
+        }
+
+      PointPair p = new PointPair(points[minI], points[minJ], min);
+      MessageBox.Show(string.Format("{0}-{1} : {2}", minI, minJ, min));
+      return p;
+
+      //if (right - left <= 3)
+      //  AlgorithmN2();
+      //int mid = left + (right - left) / 2;  // 중앙점
+      //ClosestPair CPL = FindClosestPair(points, left, mid);
+      //ClosestPair CPR = FindClosestPair(points, mid+1, right);
+      //double d = Math.Min(CPL.dist, CPR.dist);
+      //ClosestPair CPC = FindMidRange(points, d);
+
+          //return MinCP(CPL, CPR, CPC);
     }
 
     private void PrintPoints()
@@ -130,11 +152,94 @@ namespace ClosestPair
         Console.WriteLine(p.X + ", " + p.Y);
     }
 
-    // points[i]와 points[j]의 거리
-    //private double Dist(int i, int j)
-    //{
-    //  // Math.Pow(x, 2) 사용, 또는 x*x
-    //  // Math.Sqrt() 사용
-    //}
+    //points[i] 와 points[j] 의 거리
+    private double Dist(int i, int j)
+    {
+      // Math.Pow(x, 2) 사용, 또는 x*x
+      // Math.Sqrt() 사용
+      return Math.Sqrt(Math.Pow(points[i].X - points[j].X,2) + Math.Pow(points[i].Y - points[j].Y, 2));
+    }
+
+    // 분할정복
+    private void Button_Click_2(object sender, RoutedEventArgs e)
+    {
+      PointPair result = FindClosestPairDC(points, 0, P);
+      HighLight(result);
+      //MessageBox.Show(String.Format("({0},{1})-({2},{3}) : {4}",
+      //  result.P1.X, result.P1.Y, result.P2.X, result.P2.Y, result.Dist));
+    }
+
+    private void HighLight(PointPair result)
+    {
+      Line line = new Line();
+      line.X1 = result.P1.X;
+      line.Y1 = result.P1.Y;
+      line.X2 = result.P2.X;
+      line.Y2 = result.P2.Y;
+      line.Stroke = Brushes.Red;
+      line.StrokeThickness = 2;
+      canvas1.Children.Add(line);
+    }
+
+    private PointPair FindClosestPairDC(Point[] points, int left, int right)
+    {
+      if (right - left <= 10)
+        return FindClosestPair(points, left, right);
+
+      int mid = left + (right - left) / 2;  // 중앙점
+      CenterLine(mid);
+
+      PointPair CPL = FindClosestPairDC(points, left, mid);
+      PointPair CPR = FindClosestPairDC(points, mid + 1, right);
+      double d = Math.Min(CPL.Dist, CPR.Dist);
+      PointPair CPC = FindMidRange(points, mid, d);
+
+      return MinPointPair(CPL, CPR, CPC);
+    }
+
+    private void CenterLine(int mid)
+    {
+      Line line = new Line();
+      line.X1 = points[mid].X;
+      line.Y1 = 0;
+      line.X2 = points[mid].X;
+      line.Y2 = 500;
+      line.Stroke = Brushes.Blue;
+      canvas1.Children.Add(line);
+    }
+
+    // 3개의 PointPair 중에서 가장 dist가 작은 PointPair를 린턴
+    private PointPair MinPointPair(PointPair cPL, PointPair cPR, PointPair cPC)
+    {
+      if (cPL.Dist <= cPR.Dist && cPL.Dist <= cPC.Dist)
+        return cPL;
+      else if (cPR.Dist <= cPL.Dist && cPR.Dist <= cPC.Dist)
+        return cPR;
+      else
+        return cPC;
+    }
+
+    // points[] 배열에서 인덱스가 mid += d 인 점들 중에서 최소거리쌍을 리턴
+    private PointPair FindMidRange(Point[] points, int mid, double d)
+    {
+      int left = 0, right = 0;
+
+      // 중간영역의 left, right를 찾는다
+      for(int i=mid-1; i>=0; i--)
+        if(points[mid].X - points[i].X > d)
+        {
+          left = i;
+          break;
+        }
+
+      for(int i=mid+1; i<=points.Length; i++)
+        if(points[i].X - points[mid].X >d)
+        {
+          right = i;
+          break;
+        }
+
+      return FindClosestPair(points, left, right);
+    }
   }
 }
