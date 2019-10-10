@@ -53,6 +53,15 @@ namespace ClosestPair
         {
             canvas1.Children.Clear();
             MakePointArray();
+            SortPointArray();   // 점의 배열을 만들고 바로 정렬합니다.
+        }
+
+        private void SortPointArray()
+        {
+            IComparer xComp = new XComparer();
+            Array.Sort(points, xComp);
+            //Array.Sort(points, new XComparer());
+            PrintPoints();
         }
 
         private void MakePointArray()
@@ -61,7 +70,7 @@ namespace ClosestPair
 
             for (int i = 0; i < P; i++)
             {
-                points[i].X = r.Next(500);
+                points[i].X = r.Next(1100);
                 points[i].Y = r.Next(500);
             }
 
@@ -96,11 +105,6 @@ namespace ClosestPair
             //Array.Sort(a);
             //foreach (var v in a)
             //  Console.WriteLine(v);
-
-            IComparer xComp = new XComparer();
-            Array.Sort(points, xComp);
-            //Array.Sort(points, new XComparer());
-            PrintPoints();
 
             //ClosestPair CP = FindClosestPair(points, 0, 100 - 1);
             PointPair result = FindClosestPair(points, 0, P - 1);
@@ -188,11 +192,15 @@ namespace ClosestPair
 
         private PointPair FindClosestPairDC(Point[] points, int left, int right)
         {
+            
             if (right - left <= 10)
                 return FindClosestPair(points, left, right);
 
-            int mid = left + (right - left) / 2;  // 중앙점
+            
+            int mid = left + (right - left) / 2;  // 중앙 포인트의 인덱스
             CenterLine(mid);
+            Console.WriteLine(string.Format("FindClosestPairtDC({0},{1}) - {2} at {3}", 
+                left, right, mid, points[mid].X));
 
             PointPair CPL = FindClosestPairDC(points, left, mid);
             PointPair CPR = FindClosestPairDC(points, mid + 1, right);
@@ -224,7 +232,7 @@ namespace ClosestPair
                 return cPC;
         }
 
-        // points[] 배열에서 인덱스가 mid += d 인 점들 중에서 최소거리쌍을 리턴
+        // points[] 배열에서 인덱스가 mid +- d 인 점들 중에서 최소거리쌍을 리턴
         private PointPair FindMidRange(Point[] points, int mid, double d)
         {
             int left = 0, right = 0;
@@ -237,7 +245,7 @@ namespace ClosestPair
                     break;
                 }
 
-            for (int i = mid + 1; i <= points.Length; i++)
+            for (int i = mid + 1; i < points.Length; i++)
                 if (points[i].X - points[mid].X > d)
                 {
                     right = i;

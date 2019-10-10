@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClosestPair"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="600">
+        Title="MainWindow" Height="720" Width="1200">
     <StackPanel>
         <Grid Height="600">
-            <Canvas Name="canvas1" Background="Beige" Width="500" Height="500"/>
+            <Canvas Name="canvas1" Background="Beige" Width="1100" Height="500"/>
         </Grid>
         <StackPanel Orientation="Horizontal" 
                     HorizontalAlignment="Center">
