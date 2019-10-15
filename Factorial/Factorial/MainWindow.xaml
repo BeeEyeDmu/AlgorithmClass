@@ -1,0 +1,16 @@
+﻿<Window x:Class="Factorial.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Factorial"
+        mc:Ignorable="d"
+        Title="Factorial" Height="300" Width="320">
+    <Grid>
+        <TextBox x:Name="txtNumber" TextAlignment="Center" HorizontalAlignment="Left" Height="23" Margin="44,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" VerticalContentAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Left" Margin="44,32,0,0" TextWrapping="Wrap" Text="다음 숫자의 팩토리얼을 계산!" VerticalAlignment="Top"/>
+        <Button Content="계산" HorizontalAlignment="Left" Margin="190,64,0,0" VerticalAlignment="Top" Width="75" VerticalContentAlignment="Center" Height="23" Click="Button_Click"/>
+        <ListBox x:Name="lstResult" HorizontalAlignment="Left" Height="138" Margin="44,106,0,0" VerticalAlignment="Top" Width="221"/>
+
+    </Grid>
+</Window>
