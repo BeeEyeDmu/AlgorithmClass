@@ -8,7 +8,7 @@ namespace Dijkstra
 {
   class Program
   {
-    string[] city = 
+    static string[] city = 
       { "서울", "천안", "원주", "강릉", "논산",
       "대전", "대구", "포항", "광주", "부산" };
     static int V = 10;        // 도시 갯수
@@ -32,7 +32,7 @@ namespace Dijkstra
         { 0, 0, 0, 0, 0, 0, 9, 5, 15, 0}
       };
 
-      ShortestPath(graph, 0);
+      ShortestPath(graph, 1); // 대전출발
     }
 
     // src는 출발점
@@ -47,16 +47,50 @@ namespace Dijkstra
 
       D[src] = 0;
 
-      for(int i=0; i<V-1; i++)
+      for(int i=0; i<V; i++) // V ? V-1
       {
-        int min = MinDistance();  // 최단경로가 계산된 도시의 인덱스
-        spt[min] = true;
+        int minIndex = MinDistance();  // 최단경로가 계산된 도시의 인덱스
+        spt[minIndex] = true;
+        Console.WriteLine("minDistance : {0}", city[minIndex]);
+
+        // update D[] of 인접 버텍스
+        // 4번 라인
+        for (int v = 0; v < V; v++)
+          if (!spt[v] && graph[i, v] != 0
+            && D[i] != int.MaxValue
+            && D[i] + graph[i, v] < D[v])
+          {
+            D[v] = D[i] + graph[i, v];
+          }
+
+        Console.WriteLine("iteration: {0}", i);
+        PrintD(src);
       }
     }
 
+    private static void PrintD(int src)
+    {
+      Console.WriteLine("도시\tDistance from {0}", city[src]);
+      for(int i=0; i<V; i++)
+        Console.WriteLine("{0}\t{1}", city[i], D[i]);
+    }
+
+    // spt에 속하지 않는 버텍스 중에서 최단거리를 갖는 버텍스를 찾는다.
+    // 3번 라인
     private static int MinDistance()
     {
-      
+      int min = int.MaxValue;
+      int minIndex = -1;
+
+      for(int i=0; i<V; i++)
+      {
+        if(spt[i] == false && D[i] <= min)
+        {
+          min = D[i];
+          minIndex = i;
+        }
+      }
+      return minIndex;
     }
   }
 }
