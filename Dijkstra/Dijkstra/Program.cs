@@ -32,7 +32,8 @@ namespace Dijkstra
         { 0, 0, 0, 0, 0, 0, 9, 5, 15, 0}
       };
 
-      ShortestPath(graph, 1); // 대전출발
+      ShortestPath(graph, 0); // 서울출발
+      //ShortestPath(graph, 5); // 대전출발
     }
 
     // src는 출발점
@@ -47,7 +48,7 @@ namespace Dijkstra
 
       D[src] = 0;
 
-      for(int i=0; i<V; i++) // V ? V-1
+      for(int i=0; i<V; i++) // 반복횟수(10개의 도시가 선택)
       {
         int minIndex = MinDistance();  // 최단경로가 계산된 도시의 인덱스
         spt[minIndex] = true;
@@ -56,11 +57,11 @@ namespace Dijkstra
         // update D[] of 인접 버텍스
         // 4번 라인
         for (int v = 0; v < V; v++)
-          if (!spt[v] && graph[i, v] != 0
-            && D[i] != int.MaxValue
-            && D[i] + graph[i, v] < D[v])
+          if (!spt[v]             // 아직 최단경로가 결정되지 않았고
+            && graph[minIndex, v] != 0    // minIndex와 연결된 버텍스
+            && D[minIndex] + graph[minIndex, v] < D[v])  // 
           {
-            D[v] = D[i] + graph[i, v];
+            D[v] = D[minIndex] + graph[minIndex, v];
           }
 
         Console.WriteLine("iteration: {0}", i);
