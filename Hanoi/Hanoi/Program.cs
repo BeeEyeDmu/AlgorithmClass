@@ -7,7 +7,6 @@ namespace Hanoi
         static void Main(string[] args)
         {
             Hanoi(4, 'A', 'C', 'B'); // A에서 B를 이용해 C로 이동
-
         }
 
         private static void Hanoi(int n, char from, char to, char by)
