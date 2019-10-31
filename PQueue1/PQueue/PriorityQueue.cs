@@ -51,21 +51,23 @@ namespace PQueue
       int i = 0;
       while(i*2+1 < Count) // 자식이 없을 때까지
       {
-        int left = i * 2 + 1;
-        int right = i * 2 + 2;
+        int left = i * 2 + 1;        int right = i * 2 + 2;
         int c;
-        if( list[left] < list[right]) // 왼쪽으로 진행
-          c = left;
-        else
+
+        if( right < Count && list[right] < list[left] ) // 왼쪽으로 진행
           c = right;
+        else
+          c = left;
 
         if (list[c] < root)
         {
           list[c] = list[i];
           i = c;
         }
+        else  break;
       }
-      list[i] = root;
+      if(Count > 0)
+        list[i] = root; 
       return min;
     }
 
