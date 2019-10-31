@@ -12,6 +12,17 @@ namespace PQueue
     {
       Console.WriteLine("Priority Queue");
       PriorityQueue pq = new PriorityQueue();
+
+      Console.WriteLine("Enter 10 integers: ");
+      for(int i=0; i<10; i++)
+      {
+        int x = int.Parse(Console.ReadLine());
+        pq.Insert(x);
+      }
+
+      int count = pq.Count;
+      for(int i =0; i<count; i++)
+        Console.WriteLine(pq.Remove());
     }
   }
 }
