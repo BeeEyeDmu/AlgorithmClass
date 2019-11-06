@@ -61,7 +61,7 @@ namespace PQueue
 
         if (list[c] < root)
         {
-          list[i] = list[c];
+          list[c] = list[i];
           i = c;
         }
         else  break;
