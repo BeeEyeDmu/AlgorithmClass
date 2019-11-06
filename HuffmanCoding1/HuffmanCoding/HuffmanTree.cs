@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace HuffmanCoding
 {
@@ -66,16 +67,12 @@ namespace HuffmanCoding
     {
       List<bool> encodedSource = new List<bool>();
 
-      for(int i=0; i<source.Length; i++)
+      for (int i = 0; i < source.Length; i++)
       {
-        // Traverse: 알파벳 각각에 대해서 hTree에서 0101 패턴을 찾아온다
-        List<bool> encodedSymbol =
-          this.Root.Traverse(source[i], new List<bool>());
-
-        encodedSource.AddRange(encodedSymbol);
+        encodedSource.AddRange(symbolCode[source[i]]);
       }
       BitArray bits = new BitArray(encodedSource.ToArray());
-      return bits;
+      return bits;   
     }
 
     // 암호로부터 해석된 문자열을 리턴한다
@@ -113,6 +110,44 @@ namespace HuffmanCoding
       //else
       //  return false;
       return node.Left == null && node.Right == null;
+    }
+
+    Dictionary<char, List<bool>> symbolCode = new Dictionary<char, List<bool>>();
+
+    // InOrder Traversal을 사용하여 각 단말노드의 코드를 BitArray로 만들어 
+    // Dictinary<Symbol, Code>로 저장한다
+    public void InOrder(Node node, List<bool> value)
+    {
+      if (node != null)
+      {
+        if (IsLeaf(node))
+        {
+          symbolCode.Add(node.Symbol, value); //new BitArray(value.ToArray()));
+        }
+
+        List<bool> leftPath = new List<bool>();
+        leftPath.AddRange(value);
+        leftPath.Add(false);
+        InOrder(node.Left, leftPath);
+
+        List<bool> rightPath = new List<bool>();
+        rightPath.AddRange(value);
+        rightPath.Add(true);
+        InOrder(node.Right, rightPath);
+      }
+    }
+
+    // Print Dictionary symbolCode<char, BitArray>
+    public void PrintSymbolCode()
+    {
+      Console.WriteLine("Symbol Code");
+      foreach(var v in symbolCode)
+      {
+        Console.Write(v.Key + "\t");
+        foreach (bool bit in v.Value)
+          Console.Write(bit ? 1 : 0);
+        Console.WriteLine();
+      }
     }
   }
 }

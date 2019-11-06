@@ -32,12 +32,21 @@ namespace HuffmanCoding
       HuffmanTree hTree = new HuffmanTree();
       hTree.Build(input);
 
+      // hTree traveral to make Dictionary symbolCode<char, BitArray>
+      hTree.InOrder(hTree.Root, new List<bool>());
+      hTree.PrintSymbolCode();
+
+
       // Encode
       BitArray encoded = hTree.Encode(input);
       PrintCode(encoded);
+      Console.WriteLine("Size of encoded = "+encoded.Length + " bits, " + (encoded.Count/8) +" bytes");
+
 
       string decoded = hTree.Decode(encoded);
-      Console.WriteLine(decoded);      
+      Console.WriteLine(decoded);
+      Console.WriteLine("Size of decoded = " + decoded.Length + " bytes");
+
     }
 
     private static void PrintCode(BitArray encoded)

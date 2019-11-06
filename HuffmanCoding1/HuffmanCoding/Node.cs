@@ -13,6 +13,7 @@ namespace HuffmanCoding
     public Node Left { get; set; }
     public Node Right { get; set; }
 
+    /*
     public List<bool> Traverse(char symbol, List<bool> data)
     {
       if (Right == null && Left == null) // Leaf
@@ -48,5 +49,6 @@ namespace HuffmanCoding
           return right;
       }
     }
+    */
   }
 }
