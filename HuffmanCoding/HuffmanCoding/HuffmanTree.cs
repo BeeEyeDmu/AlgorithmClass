@@ -67,12 +67,8 @@ namespace HuffmanCoding
       List<bool> encodedSource = new List<bool>();
 
       for(int i=0; i<source.Length; i++)
-      {
-        // Traverse: 알파벳 각각에 대해서 hTree에서 0101 패턴을 찾아온다
-        List<bool> encodedSymbol =
-          this.Root.Traverse(source[i], new List<bool>());
-
-        encodedSource.AddRange(encodedSymbol);
+      {     
+        encodedSource.AddRange(symbolCode[source[i]]);
       }
       BitArray bits = new BitArray(encodedSource.ToArray());
       return bits;
@@ -113,6 +109,45 @@ namespace HuffmanCoding
       //else
       //  return false;
       return node.Left == null && node.Right == null;
+    }
+
+    Dictionary<char, List<bool>> symbolCode 
+      = new Dictionary<char, List<bool>>();
+    
+    // 허프만 트리의 순회
+    // 순회하면서 Dictionary symbolCode를 만든다
+    public void InOrder(Node node, List<bool> value)
+    {
+      if(node != null)
+      {
+        if (IsLeaf(node)) // 단말
+          symbolCode.Add(node.Symbol, value);
+
+        // 왼쪽 자식
+        List<bool> leftPath = new List<bool>();
+        leftPath.AddRange(value);
+        leftPath.Add(false);
+        InOrder(node.Left, leftPath);
+
+        // 오른쪽 자식
+        List<bool> rigthPath = new List<bool>();
+        rigthPath.AddRange(value);
+        rigthPath.Add(true);
+        InOrder(node.Right, rigthPath);
+      }
+    }
+
+    // Print Dictionary symbolCode
+    public void PrintSymbolCode()
+    {
+      System.Console.WriteLine("symbolCode");
+      foreach(var v in symbolCode)
+      {
+        System.Console.Write(v.Key + "\t");
+        foreach(bool bit in v.Value)
+          System.Console.Write(bit?1:0);
+        System.Console.WriteLine();
+      }
     }
   }
 }

@@ -32,9 +32,16 @@ namespace HuffmanCoding
       HuffmanTree hTree = new HuffmanTree();
       hTree.Build(input);
 
+      // symbolCode 딕셔너리를 만든다
+      hTree.InOrder(hTree.Root, new List<bool>());
+      hTree.PrintSymbolCode();
+
       // Encode
       BitArray encoded = hTree.Encode(input);
       PrintCode(encoded);
+      Console.WriteLine("Encoded Size = " + encoded.Length 
+        + " bits, " + encoded.Length/8 + " bytes");
+      Console.WriteLine("Decoded Size = " + input.Length + " bytes");
 
       string decoded = hTree.Decode(encoded);
       Console.WriteLine(decoded);      
