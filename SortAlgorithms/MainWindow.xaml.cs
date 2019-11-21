@@ -3,10 +3,10 @@ using System.Windows;
 
 namespace Ch2_SortAlgorithms
 {
-    /// <summary>
-    /// 10만개의 정렬: 65초와 31ms 2천배
-    /// </summary>
-    public partial class MainWindow : Window
+  /// <summary>
+  /// 10만개의 정렬: 65초와 31ms 2천배
+  /// </summary>
+  public partial class MainWindow : Window
   {
     int[] a = new int[100000000]; // 1억개
 
@@ -105,11 +105,47 @@ namespace Ch2_SortAlgorithms
     {
       var watch = System.Diagnostics.Stopwatch.StartNew();
 
-      Quick_Sort(a, 0, int.Parse(txtNo.Text)-1);
+      Quick_Sort(a, 0, int.Parse(txtNo.Text) - 1);
 
       watch.Stop();
       tbLog.Text = watch.ElapsedMilliseconds + "ms";
       PrintArray(a);
+    }
+
+    // 삽입정렬
+    private void BtnInsertionSort_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    // 선택정렬
+    private void BtnSelectionSort_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    // 힙정렬
+    private void BtnHeapSort_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    // 쉘 정렬
+    private void BtnShellSort_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    // 기수정렬
+    private void BtnRadixSort_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    // 모두 실행
+    private void BtnAll_Click(object sender, RoutedEventArgs e)
+    {
+
     }
   }
 }

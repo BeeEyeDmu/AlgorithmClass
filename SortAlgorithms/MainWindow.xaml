@@ -6,15 +6,23 @@
         xmlns:local="clr-namespace:Ch2_SortAlgorithms"
         mc:Ignorable="d"
         Title="TimeComplexity
-        " Height="300" Width="400">
-    <Grid>
+        " Height="300" Width="1000">
+    <Grid Margin="0,0,2,0">
     <TextBlock HorizontalAlignment="Left" Margin="34,31,0,0" TextWrapping="Wrap" Text="몇개의 숫자를 만들겠습니까?" VerticalAlignment="Top"/>
     <TextBox x:Name="txtNo" HorizontalAlignment="Left" Height="23" Margin="34,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center"/>
     <Button x:Name="btnRandom" Content="생성" HorizontalAlignment="Left" Margin="185,63,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="BtnRandom_Click"/>
-    <Button x:Name="btnQuad" Content="Quadratic Sort" HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="BtnQuad_Click"/>
-    <Button x:Name="btnLog" Content="N lnN Sort" HorizontalAlignment="Left" Margin="185,106,0,0" VerticalAlignment="Top" Width="116" Height="25" Click="BtnLog_Click"/>
+    <Button x:Name="btnQuad" Content="Bubble Sort" HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="BtnQuad_Click"/>
+    <Button x:Name="btnLog" Content="QuickSort" HorizontalAlignment="Left" Margin="185,106,0,0" VerticalAlignment="Top" Width="116" Height="25" Click="BtnLog_Click"/>
     <TextBlock x:Name="tbQuad" HorizontalAlignment="Left" Margin="34,150,0,0" TextWrapping="Wrap" Text="실행속도 : " VerticalAlignment="Top" Width="120" Height="26"/>
     <TextBlock x:Name="tbLog" HorizontalAlignment="Left" Margin="185,150,0,0" TextWrapping="Wrap" Text="실행속도 : " VerticalAlignment="Top" Width="120" Height="26"/>
+        <Button x:Name="btnInsertionSort" Content="Insertion Sort" HorizontalAlignment="Left" Margin="327,106,0,0" VerticalAlignment="Top" Width="116" Height="25" Click="BtnInsertionSort_Click"/>
+        <Button x:Name="btnSelectionSort" Content="Selection Sort" HorizontalAlignment="Left" Margin="460,106,0,0" VerticalAlignment="Top" Width="116" Height="25" Click="BtnSelectionSort_Click"/>
+        <Button x:Name="btnHeapSort" Content="Heap Sort" HorizontalAlignment="Left" Margin="600,106,0,0" VerticalAlignment="Top" Width="116" Height="25" Click="BtnHeapSort_Click"/>
+        <Button x:Name="btnShellSort" Content="Shell Sort" HorizontalAlignment="Left" Margin="736,106,0,0" VerticalAlignment="Top" Width="116" Height="25" Click="BtnShellSort_Click"/>
+        <Button x:Name="btnRadixSort" 
+                Content="Radix Sort" HorizontalAlignment="Left" Margin="864,106,0,0" VerticalAlignment="Top" Width="116" Height="25" 
+                Click="BtnRadixSort_Click"/>
+        <Button x:Name="btnAll" Content="모두 실행" HorizontalAlignment="Left" Margin="327,63,0,0" VerticalAlignment="Top" Width="116" Height="25" Click="BtnAll_Click" RenderTransformOrigin="-2.216,-2.44"/>
 
-  </Grid>
+    </Grid>
 </Window>
