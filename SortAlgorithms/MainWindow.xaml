@@ -1,0 +1,20 @@
+﻿<Window x:Class="Ch2_SortAlgorithms.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ch2_SortAlgorithms"
+        mc:Ignorable="d"
+        Title="TimeComplexity
+        " Height="300" Width="400">
+    <Grid>
+    <TextBlock HorizontalAlignment="Left" Margin="34,31,0,0" TextWrapping="Wrap" Text="몇개의 숫자를 만들겠습니까?" VerticalAlignment="Top"/>
+    <TextBox x:Name="txtNo" HorizontalAlignment="Left" Height="23" Margin="34,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Center"/>
+    <Button x:Name="btnRandom" Content="생성" HorizontalAlignment="Left" Margin="185,63,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="BtnRandom_Click"/>
+    <Button x:Name="btnQuad" Content="Quadratic Sort" HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="BtnQuad_Click"/>
+    <Button x:Name="btnLog" Content="N lnN Sort" HorizontalAlignment="Left" Margin="185,106,0,0" VerticalAlignment="Top" Width="116" Height="25" Click="BtnLog_Click"/>
+    <TextBlock x:Name="tbQuad" HorizontalAlignment="Left" Margin="34,150,0,0" TextWrapping="Wrap" Text="실행속도 : " VerticalAlignment="Top" Width="120" Height="26"/>
+    <TextBlock x:Name="tbLog" HorizontalAlignment="Left" Margin="185,150,0,0" TextWrapping="Wrap" Text="실행속도 : " VerticalAlignment="Top" Width="120" Height="26"/>
+
+  </Grid>
+</Window>
