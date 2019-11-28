@@ -14,7 +14,8 @@
                 Click="RandomClick"/>
         <Button x:Name="btnBubble" Content="버블정렬" HorizontalAlignment="Left" Margin="53,106,0,0" VerticalAlignment="Top" Width="75" 
                 Click="BubbleClick"/>
-        <Button x:Name="btnQuick" Content="퀵정렬" HorizontalAlignment="Left" Margin="152,106,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnQuick" Content="버블정렬2" HorizontalAlignment="Left" Margin="152,106,0,0" VerticalAlignment="Top" Width="75"
+                Click="Bubble2Click"/>
         <Button x:Name="btnShell" Content="쉘정렬" HorizontalAlignment="Left" Margin="255,106,0,0" VerticalAlignment="Top" Width="75"/>
         <Canvas x:Name="canvas1"  Background="AntiqueWhite" HorizontalAlignment="Left" Height="223" Margin="53,160,0,0" VerticalAlignment="Top" Width="604"/>
 

@@ -82,5 +82,29 @@ namespace GraphWPF
         canvas1.Children.Add(r);
       }
     }
+
+    private void Bubble2Click(object sender, RoutedEventArgs e)
+    {
+      t1 = new Thread(Bubble2);
+      t1.Start();
+    }
+
+    private void Bubble2()
+    {
+      for (int i = N-1; i > 0; i--)
+      {
+        for (int j = 0; j < i; j++)
+        {
+          if (a[j] > a[j + 1])
+          {
+            int t = a[j];
+            a[j] = a[j + 1];
+            a[j + 1] = t;
+          }
+        }
+        Dispatcher.Invoke(new Action(Graph));
+        Thread.Sleep(50);
+      }
+    }
   }
 }
