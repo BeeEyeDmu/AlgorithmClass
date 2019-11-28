@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.452
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ch2_SortAlgorithms", "Ch2_SortAlgorithms.csproj", "{58F412D2-D2B4-4A85-9378-C3579DDC704A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphWPF", "GraphWPF\GraphWPF.csproj", "{1746E22F-1554-47CC-B5AA-44598A989800}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{58F412D2-D2B4-4A85-9378-C3579DDC704A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58F412D2-D2B4-4A85-9378-C3579DDC704A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58F412D2-D2B4-4A85-9378-C3579DDC704A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1746E22F-1554-47CC-B5AA-44598A989800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1746E22F-1554-47CC-B5AA-44598A989800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1746E22F-1554-47CC-B5AA-44598A989800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1746E22F-1554-47CC-B5AA-44598A989800}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
